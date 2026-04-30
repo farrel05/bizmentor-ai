@@ -7,6 +7,12 @@
   border-top: 1px solid var(--border);
 }
 
+.lang-switcher.compact {
+  padding: 0;
+  border-top: none;
+  gap: 3px;
+}
+
 .lang-btn {
   flex: 1;
   padding: 6px 4px;
@@ -20,6 +26,12 @@
   font-family: 'DM Sans', sans-serif;
   transition: all 0.15s;
   letter-spacing: 0.5px;
+}
+
+.lang-switcher.compact .lang-btn {
+  padding: 4px 8px;
+  font-size: 10px;
+  flex: none;
 }
 
 .lang-btn:hover {

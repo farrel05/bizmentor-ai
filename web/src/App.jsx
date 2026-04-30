@@ -11,12 +11,20 @@ import Dashboard from './Dashboard';
 import Simulator from './Simulator';
 import './App.css';
 
+const NAV_CONFIG = [
+  { id: 'chat',         icon: '💬', labelKey: 'nav.assistant'    },
+  { id: 'subsidies',    icon: '💰', labelKey: 'nav.subsidies'    },
+  { id: 'businessplan', icon: '📄', labelKey: 'nav.businessPlan' },
+  { id: 'dashboard',    icon: '📊', labelKey: 'nav.dashboard'    },
+  { id: 'simulator',    icon: '🎯', labelKey: 'nav.simulator'    },
+];
+
 export default function App() {
-  const { lang }                           = useLang();
-  const [session, setSession]              = useState(null);
-  const [loading, setLoading]              = useState(true);
-  const [activeSection, setActive]         = useState('chat');
-  const [profile, setProfile]              = useState(null);
+  const { lang }                       = useLang();
+  const [session, setSession]          = useState(null);
+  const [loading, setLoading]          = useState(true);
+  const [activeSection, setActive]     = useState('chat');
+  const [profile, setProfile]          = useState(null);
 
   const loadProfile = async (userId) => {
     const { data } = await supabase.from('profiles').select('*').eq('id', userId).single();
@@ -70,16 +78,10 @@ export default function App() {
     ? profile.full_name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
     : session.user.email[0].toUpperCase();
 
-  const NAV_ITEMS = [
-    { id: 'chat',         icon: '💬', label: t('nav.assistant', lang)    },
-    { id: 'subsidies',    icon: '💰', label: t('nav.subsidies', lang)    },
-    { id: 'businessplan', icon: '📄', label: t('nav.businessPlan', lang) },
-    { id: 'dashboard',    icon: '📊', label: t('nav.dashboard', lang)    },
-    { id: 'simulator',    icon: '🎯', label: t('nav.simulator', lang)    },
-  ];
-
   return (
     <div className="app-wrapper">
+
+      {/* ── Sidebar Desktop ───────────────────────── */}
       <aside className="sidebar">
         <div className="sidebar-logo">
           <div className="logo-icon">B</div>
@@ -88,22 +90,18 @@ export default function App() {
             <div className="logo-sub">AI Belge</div>
           </div>
         </div>
-
         <nav className="sidebar-nav">
-          {NAV_ITEMS.map(item => (
+          {NAV_CONFIG.map(item => (
             <div
               key={item.id}
               className={`nav-item ${activeSection === item.id ? 'active' : ''}`}
               onClick={() => setActive(item.id)}
             >
-              {item.icon} {item.label}
+              {item.icon} {t(item.labelKey, lang)}
             </div>
           ))}
         </nav>
-
-        {/* Sélecteur de langue */}
         <LanguageSwitcher />
-
         <div className="sidebar-user">
           <div className="user-avatar">{initials}</div>
           <div className="user-info">
@@ -114,9 +112,40 @@ export default function App() {
         </div>
       </aside>
 
+      {/* ── Header Mobile ─────────────────────────── */}
+      <div className="mobile-header">
+        <div className="mobile-header-logo">
+          <div className="mobile-logo-icon">B</div>
+          <span className="mobile-logo-text">BizMentor AI</span>
+        </div>
+        <div className="mobile-header-actions">
+          <LanguageSwitcher compact />
+          <div className="mobile-user-avatar">{initials}</div>
+          <button className="mobile-logout" onClick={handleLogout}>↩</button>
+        </div>
+      </div>
+
+      {/* ── Contenu principal ─────────────────────── */}
       <div className="main-content">
         {renderSection()}
       </div>
+
+      {/* ── Navigation Mobile en bas ──────────────── */}
+      <nav className="mobile-nav">
+        <div className="mobile-nav-items">
+          {NAV_CONFIG.map(item => (
+            <div
+              key={item.id}
+              className={`mobile-nav-item ${activeSection === item.id ? 'active' : ''}`}
+              onClick={() => setActive(item.id)}
+            >
+              <span className="nav-icon">{item.icon}</span>
+              <span className="nav-label">{t(item.labelKey, lang)}</span>
+            </div>
+          ))}
+        </div>
+      </nav>
+
     </div>
   );
 }
