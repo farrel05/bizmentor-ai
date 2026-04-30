@@ -9,7 +9,13 @@ const app       = express();
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000'],
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://bizmentor-ai.vercel.app',
+    'https://bizmentor-ai-git-main-farrel05s-projects.vercel.app',
+    'https://bizmentor-jniue92za-farrel05s-projects.vercel.app'
+  ],
   methods: ['GET', 'POST'],
   credentials: true
 }));
