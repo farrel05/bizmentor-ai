@@ -1,0 +1,8 @@
+# Fichiers secrets
+backend/.env
+web/.env
+
+# Dépendances
+node_modules/
+dist/
+.DS_Store

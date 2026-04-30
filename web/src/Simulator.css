@@ -1,0 +1,336 @@
+/* Simulator.css */
+
+.sim-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+  background: var(--bg);
+}
+
+.sim-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.sim-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sim-icon { font-size: 28px; }
+
+.sim-header h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.sim-header p {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+
+.reset-btn {
+  font-size: 13px;
+  color: var(--accent);
+  background: var(--accent-light);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+}
+
+.reset-btn:hover { background: #B7E4C7; }
+
+/* Scenarios */
+.scenarios-grid-wrapper {
+  padding: 28px;
+  overflow-y: auto;
+}
+
+.scenarios-intro {
+  font-size: 14px;
+  color: var(--text-2);
+  margin-bottom: 20px;
+}
+
+.scenarios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.scenario-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scenario-card:hover {
+  border-color: var(--accent-color, var(--accent));
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.scenario-icon { font-size: 28px; }
+
+.scenario-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.scenario-desc {
+  font-size: 13px;
+  color: var(--text-3);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.scenario-arrow {
+  font-size: 13px;
+  color: var(--accent-color, var(--accent));
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* Form */
+.sim-form {
+  padding: 28px;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sim-form-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.sim-form-icon { font-size: 32px; flex-shrink: 0; }
+
+.sim-form-header h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 4px;
+}
+
+.sim-form-header p {
+  font-size: 13px;
+  color: var(--text-3);
+  line-height: 1.5;
+}
+
+.sim-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sim-field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.sim-input {
+  font-size: 14px;
+  color: var(--text-1);
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--surface);
+  transition: border 0.2s;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.sim-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(45,106,79,0.1);
+}
+
+.sim-input::placeholder { color: var(--text-3); }
+
+.sim-hint {
+  font-size: 12px;
+  color: var(--text-3);
+  font-style: italic;
+}
+
+.simulate-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(45,106,79,0.3);
+  align-self: flex-start;
+}
+
+.simulate-btn:hover:not(:disabled) {
+  background: #1B4332;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(45,106,79,0.35);
+}
+
+.simulate-btn:disabled {
+  background: var(--bg-3);
+  color: var(--text-3);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Loading */
+.sim-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 16px;
+  padding: 60px;
+}
+
+.sim-spinner {
+  width: 48px; height: 48px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.sim-loading p {
+  font-size: 15px;
+  color: var(--text-1);
+  font-weight: 500;
+}
+
+.sim-loading span {
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+/* Results */
+.sim-results {
+  padding: 28px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sim-result-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sim-result-header span { font-size: 20px; }
+
+.sim-result-header strong {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.sim-context-badge {
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 12px !important;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.sim-result-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 36px;
+  box-shadow: var(--shadow);
+  line-height: 1.8;
+  font-size: 14.5px;
+  color: var(--text-1);
+}
+
+.sim-result-content h1,
+.sim-result-content h2 {
+  font-family: 'Sora', sans-serif;
+  color: var(--accent);
+  margin: 20px 0 10px;
+}
+
+.sim-result-content h2 { font-size: 15px; font-weight: 600; }
+.sim-result-content h3 { font-size: 14px; font-weight: 600; color: var(--text-1); margin: 14px 0 6px; }
+.sim-result-content ul, .sim-result-content ol { padding-left: 20px; margin: 8px 0; }
+.sim-result-content li { margin: 5px 0; }
+.sim-result-content strong { font-weight: 600; }
+.sim-result-content p { margin: 8px 0; }
+.sim-result-content hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+.new-sim-btn {
+  background: var(--accent-light);
+  color: var(--accent);
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+  align-self: flex-start;
+}
+
+.new-sim-btn:hover { background: #B7E4C7; }
+
+@media (max-width: 900px) {
+  .scenarios-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .scenarios-grid { grid-template-columns: 1fr; }
+}
