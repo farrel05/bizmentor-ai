@@ -8,6 +8,7 @@ dotenv.config();
 const app       = express();
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
+// CORS ouvert pour tous les domaines
 app.use(cors());
 app.use(express.json());
 
@@ -32,8 +33,8 @@ app.post('/api/chat', async (req, res) => {
   if (!messages || !Array.isArray(messages)) return res.status(400).json({ error: 'Messages requis' });
 
   try {
-    const lang         = userProfile?.language || 'fr';
-    let systemPrompt   = SYSTEM_PROMPTS[lang] || SYSTEM_PROMPTS.fr;
+    const lang       = userProfile?.language || 'fr';
+    let systemPrompt = SYSTEM_PROMPTS[lang] || SYSTEM_PROMPTS.fr;
 
     if (userProfile) {
       const profileInfo = {
