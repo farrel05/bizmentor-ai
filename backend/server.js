@@ -46,7 +46,7 @@ app.post('/api/chat', async (req, res) => {
     }
 
     const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-5',
       max_tokens: 1024,
       system:     systemPrompt,
       messages:   messages
@@ -70,7 +70,7 @@ app.post('/api/business-plan', async (req, res) => {
     };
 
     const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-5',
       max_tokens: 2048,
       messages:   [{ role: 'user', content: prompts[lang] || prompts.fr }]
     });
@@ -93,7 +93,7 @@ app.post('/api/subsidies', async (req, res) => {
     };
 
     const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-5',
       max_tokens: 1024,
       messages:   [{ role: 'user', content: prompts[lang] || prompts.fr }]
     });
