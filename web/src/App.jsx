@@ -27,8 +27,9 @@ export default function App() {
   const [profile, setProfile]          = useState(null);
 
   const loadProfile = async (userId) => {
-    const { data } = await supabase.from('profiles').select('*').eq('id', userId).single();
-    if (data) setProfile(data);
+   const { data } = await supabase.from('profiles').select('*').eq('id', userId).single();
+   if (data) setProfile({ ...data, id: userId });
+   else setProfile({ id: userId });
   };
 
   useEffect(() => {
